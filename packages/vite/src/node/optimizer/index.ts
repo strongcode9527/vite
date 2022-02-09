@@ -263,6 +263,7 @@ export async function optimizeDeps(
       }
       exportsData = parse(transformed.code) as ExportsData
     }
+    // import 分析
     for (const { ss, se } of exportsData[0]) {
       const exp = entryContent.slice(ss, se)
       if (/export\s+\*\s+from/.test(exp)) {
