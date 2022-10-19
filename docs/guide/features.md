@@ -57,7 +57,7 @@ However, some libraries (e.g. [`vue`](https://github.com/vuejs/core/issues/1228)
 
 #### `useDefineForClassFields`
 
-Starting from Vite 2.5.0, the default value will be `true` if the TypeScript target is `ESNext`. It is consistent with the [behavior of `tsc` 4.3.2 and later](https://github.com/microsoft/TypeScript/pull/42663). It is also the standard ECMAScript runtime behavior.
+Starting from Vite 2.5.0, the default value will be `true` if the TypeScript target is `ES2022` or higher including `ESNext`. It is consistent with the [behavior of `tsc` 4.3.2 and later](https://github.com/microsoft/TypeScript/pull/42663). It is also the standard ECMAScript runtime behavior.
 
 But it may be counter-intuitive for those coming from other programming languages or older versions of TypeScript.
 You can read more about the transition in the [TypeScript 3.7 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier).
@@ -71,10 +71,13 @@ But a few libraries haven't transitioned to this new default yet, including [`li
 #### Other Compiler Options Affecting the Build Result
 
 - [`extends`](https://www.typescriptlang.org/tsconfig#extends)
+- [`alwaysStrict`](https://www.typescriptlang.org/tsconfig#alwaysStrict)
 - [`importsNotUsedAsValues`](https://www.typescriptlang.org/tsconfig#importsNotUsedAsValues)
-- [`preserveValueImports`](https://www.typescriptlang.org/tsconfig#preserveValueImports)
+- [`jsx`](https://www.typescriptlang.org/tsconfig#jsx)
 - [`jsxFactory`](https://www.typescriptlang.org/tsconfig#jsxFactory)
 - [`jsxFragmentFactory`](https://www.typescriptlang.org/tsconfig#jsxFragmentFactory)
+- [`jsxImportSource`](https://www.typescriptlang.org/tsconfig#jsxImportSource)
+- [`preserveValueImports`](https://www.typescriptlang.org/tsconfig#preserveValueImports)
 
 If migrating your codebase to `"isolatedModules": true` is an unsurmountable effort, you may be able to get around it with a third-party plugin such as [rollup-plugin-friendly-type-imports](https://www.npmjs.com/package/rollup-plugin-friendly-type-imports). However, this approach is not officially supported by Vite.
 
@@ -102,14 +105,28 @@ This will provide the following type shims:
 - Types for the Vite-injected [env variables](./env-and-mode#env-variables) on `import.meta.env`
 - Types for the [HMR API](./api-hmr) on `import.meta.hot`
 
+::: tip
+To override the default typing, declare it before the triple-slash reference. For example, to make the default import of `*.svg` a React component:
+
+```ts
+declare module '*.svg' {
+  const content: React.FC<React.SVGProps<SVGElement>>
+  export default content
+}
+
+/// <reference types="vite/client" />
+```
+
+:::
+
 ## Vue
 
 Vite provides first-class Vue support:
 
 - Vue 3 SFC support via [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)
 - Vue 3 JSX support via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite/tree/main/packages/plugin-vue-jsx)
-- Vue 2.7 support via [vitejs/vite-plugin-vue2](https://github.com/vitejs/vite-plugin-vue2)
-- Vue <2.7 support via [underfin/vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2)
+- Vue 2.7 support via [@vitejs/plugin-vue2](https://github.com/vitejs/vite-plugin-vue2)
+- Vue <2.7 support via [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2)
 
 ## JSX
 

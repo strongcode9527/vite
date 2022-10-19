@@ -65,7 +65,17 @@ export default defineConfig({
     ['meta', { property: 'og:url', content: ogUrl }],
     ['meta', { property: 'og:description', content: ogDescription }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:site', content: '@vite_js' }]
+    ['meta', { name: 'twitter:site', content: '@vite_js' }],
+    ['meta', { name: 'theme-color', content: '#646cff' }],
+    [
+      'script',
+      {
+        src: 'https://cdn.usefathom.com/script.js',
+        'data-site': 'CBDFBSLI',
+        'data-spa': 'auto',
+        defer: ''
+      }
+    ]
   ],
 
   vue: {
@@ -87,8 +97,8 @@ export default defineConfig({
     ],
 
     algolia: {
-      appId: 'BH4D9OD16A',
-      apiKey: 'b573aa848fd57fb47d693b531297403c',
+      appId: '7H67QR5P0A',
+      apiKey: 'deaab78bcdfe96b599497d25acc6460e',
       indexName: 'vitejs',
       searchParameters: {
         facetFilters: ['tags:en']
@@ -210,6 +220,10 @@ export default defineConfig({
             {
               text: 'Comparisons',
               link: '/guide/comparisons'
+            },
+            {
+              text: 'Troubleshooting',
+              link: '/guide/troubleshooting'
             },
             {
               text: 'Migration from v2',

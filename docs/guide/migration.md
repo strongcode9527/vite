@@ -6,7 +6,7 @@ Vite no longer supports Node.js 12 / 13 / 15, which reached its EOL. Node.js 14.
 
 ## Modern Browser Baseline change
 
-The production bundle assumes support for modern JavaScript. By default, Vite targets browsers which support the [native ES Modules](https://caniuse.com/es6-module), [native ESM dynamic import](https://caniuse.com/es6-module-dynamic-import), and [`import.meta`](https://caniuse.com/mdn-javascript_statements_import_meta):
+The production bundle assumes support for modern JavaScript. By default, Vite targets browsers which support the [native ES Modules](https://caniuse.com/es6-module), [native ESM dynamic import](https://caniuse.com/es6-module-dynamic-import), and [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta):
 
 - Chrome >=87
 - Firefox >=78
@@ -113,7 +113,7 @@ can be removed by passing `build.commonjsOptions: { include: [] }`
 
 ## Advanced
 
-There are some changes which only affects plugin/tool creators.
+There are some changes which only affect plugin/tool creators.
 
 - [[#5868] refactor: remove deprecated api for 3.0](https://github.com/vitejs/vite/pull/5868)
   - `printHttpServerUrls` is removed
